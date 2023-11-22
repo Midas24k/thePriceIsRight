@@ -7,6 +7,10 @@ let shuffledQuestions, currentQuestionIndex
 
 // this is for the start button duh
 startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', () =>{
+  currentQuestionIndex++
+  setNextQuestion()
+})
 
 function startGame() {
   console.log('start')
@@ -38,6 +42,7 @@ function showQuestion(question) {
 }
 
 function resetState() {
+  clearStatusClass(document.body)
   nextButton.classList.add('hide')
   while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild)
@@ -52,7 +57,13 @@ function selectAnswer(e) {
   Array.from(answerButtonsElement.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
   })
-  nextButton.classList.remove('hide')
+  if (shuffledQuestions.lenght > currentQuestionIndex + 1){
+    nextButton.classList.remove('hide')
+  } else{
+    startButton.innerText = 'restart'
+    startButton.classList.remove('hide')
+  }
+  
 }
 
 function setStatusClass(element, correct) {
@@ -78,5 +89,36 @@ var questions = [
       { text: '8', correct: false },
       { text: '10', correct: false }
     ]
-  }
+  },
+
+  {
+    question: 'On the Periodic table what does AU stand for?',
+    answers: [
+      { text: 'Kyrptonite', correct: false },
+      { text: 'Gold', correct: true },
+      { text: 'Vibranium', correct: false },
+      { text: 'Silver', correct: false }
+    ]
+  },
+  
+  {
+    question: 'If you mix blue and red what color do you get?',
+    answers: [
+      { text: 'black', correct: false },
+      { text: 'orange', correct: false },
+      { text: 'purple', correct: true },
+      { text: 'brown', correct: false }
+    ]
+  },
+
+  {
+    question: 'How long is the adult standard football field?',
+    answers: [
+      { text: '1 mile', correct: false },
+      { text: '5 kilometers', correct: false },
+      { text: '1000 ft', correct: false },
+      { text: '100 yds', correct: true}
+    ]
+  } 
 ]
+

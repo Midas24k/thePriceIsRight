@@ -28,7 +28,15 @@ body.wrong {
     background-color: firebrick;
     color: black;
 }
+.quiz {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: fixed;
+   margin-bottom: 400px;
+   font: 64px bold;
 
+}
 .container {
     width: 400px;
     max-width: 60%;

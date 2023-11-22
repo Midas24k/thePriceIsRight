@@ -4,7 +4,7 @@
 }
 :root {
     --hue-neutral: 200; 
-    --hue-wrongZ: 0;
+    --hue-wrong: 0;
     --hue-correct: 145;
 
 }
@@ -22,10 +22,11 @@ body {
 }
 
 body.correct {
-    --hue: var(--hue-correct);
+    background-color: green;
 }
 body.wrong {
-    --hue: var(--hue-wrong);
+    background-color: firebrick;
+    color: black;
 }
 
 .container {
@@ -65,6 +66,7 @@ body.wrong {
 
 .btn.wrong {
     --hue: var(--hue-wrong);
+    color: black;
 }
 
 .start-btn, .next-btn {

@@ -82,42 +82,42 @@ function clearStatusClass(element) {
 
 var questions = [
   {
-    question: 'What is 2 + 2',
+    question: 'What is the correct way to declare a variable in JavaScript?',
     answers: [
-      { text: '4', correct: true },
-      { text: '6', correct: false },
-      { text: '8', correct: false },
-      { text: '10', correct: false }
+      { text: 'var x = 5', correct: true },
+      { text: 'let x = 5', correct: false },
+      { text: 'const x = 5', correct: false },
+      { text: 'int x = 5', correct: false }
     ]
   },
 
   {
-    question: 'On the Periodic table what does AU stand for?',
+    question: 'How do you check if two variables are strictly equal in both value and type?',
     answers: [
-      { text: 'Kyrptonite', correct: false },
-      { text: 'Gold', correct: true },
-      { text: 'Vibranium', correct: false },
-      { text: 'Silver', correct: false }
+      { text: 'x == y', correct: false },
+      { text: 'x === y', correct: true },
+      { text: 'x = y', correct: false },
+      { text: 'x !== y', correct: false }
     ]
   },
   
   {
-    question: 'If you mix blue and red what color do you get?',
+    question: 'What does the “DOM” stand for in JavaScript?',
     answers: [
-      { text: 'black', correct: false },
-      { text: 'orange', correct: false },
-      { text: 'purple', correct: true },
-      { text: 'brown', correct: false }
+      { text: 'Document Object Model', correct: true },
+      { text: 'Data Object Model', correct: false },
+      { text: 'Document Oriented Model', correct: false },
+      { text: 'Dynamic Object Manipulation', correct: false }
     ]
   },
 
   {
-    question: 'How long is the adult standard football field?',
+    question: 'Which function is used to add an element to the end of an array in JavaScript?',
     answers: [
-      { text: '1 mile', correct: false },
-      { text: '5 kilometers', correct: false },
-      { text: '1000 ft', correct: false },
-      { text: '100 yds', correct: true}
+      { text: 'addElement()', correct: false },
+      { text: 'push()', correct: true },
+      { text: 'append()', correct: false },
+      { text: 'D) insertAtEnd()', correct: false}
     ]
   } 
 ]

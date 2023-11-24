@@ -1,5 +1,6 @@
 var startButton = document.getElementById('start-btn')
 var nextButton = document.getElementById('next-btn')
+var restartButton = document.getElementById('restart-btn')
 var questionContainerElement = document.getElementById('question-container')
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
@@ -11,9 +12,10 @@ nextButton.addEventListener('click', () =>{
   currentQuestionIndex++
   setNextQuestion()
 })
+// this button needs to be added in the mix
+// restartButton.addEventListener('click', restartGame)
 
 function startGame() {
-  console.log('start')
   startButton.classList.add('hide')
   shuffledQuestions = questions.sort(() => Math.random() - .5)
   currentQuestionIndex = 0
@@ -26,7 +28,7 @@ function setNextQuestion() {
   showQuestion(shuffledQuestions[currentQuestionIndex])
 
 }
-
+// shows question and what happens when ...
 function showQuestion(question) {
   questionElement.innerText = question.question
   question.answers.forEach(answer => {
@@ -49,7 +51,7 @@ function resetState() {
   }
 }
 
-
+// how the question and answers work and the "Next" button apparence starts here
 function selectAnswer(e) {
   var selectedButton = e.target
   var correct = selectedButton.dataset.correct
@@ -60,7 +62,7 @@ function selectAnswer(e) {
   if (shuffledQuestions.lenght > currentQuestionIndex + 1){
     nextButton.classList.remove('hide')
   } else{
-    startButton.innerText = 'restart'
+    startButton.innerText = 'Next'
     startButton.classList.remove('hide')
   }
   
@@ -78,6 +80,10 @@ function setStatusClass(element, correct) {
 function clearStatusClass(element) {
   element.classList.remove('correct')
   element.classList.remove()
+}
+
+function restartButton() {
+
 }
 
 var questions = [
@@ -117,7 +123,7 @@ var questions = [
       { text: 'addElement()', correct: false },
       { text: 'push()', correct: true },
       { text: 'append()', correct: false },
-      { text: 'D) insertAtEnd()', correct: false}
+      { text: 'insertAtEnd()', correct: false}
     ]
   } 
 ]

@@ -6,8 +6,12 @@ var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 var timeElement = document.getElementById("time")
 var scoreElement = document.getElementById("score")
+const formEl= document.querySelector(".form")
+const inputEl= document.getElementById("input")
+const submitBtn=document.getElementById("submit-btn")
 
-let shuffledQuestions, currentQuestionIndex
+let shuffledQuestions
+let currentQuestionIndex=0
 let score= 0;
 let timeLeft= 130;
 
@@ -15,16 +19,19 @@ let timeLeft= 130;
 // this is for the start button duh
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () =>{
+ 
   currentQuestionIndex++
   setNextQuestion()
 })
 // this button needs to be added in the mix
 // restartButton.addEventListener('click', restartGame)
 
+
 function startGame() {
   startButton.classList.add('hide')
-  shuffledQuestions = questions.sort(() => Math.random() - .5)
-  currentQuestionIndex = 0
+ 
+    shuffledQuestions = questions
+  
   questionContainerElement.classList.remove('hide')
   setNextQuestion()
 }
@@ -36,6 +43,8 @@ function setNextQuestion() {
 }
 // shows question and what happens when ...
 function showQuestion(question) {
+console.log("current Index:", currentQuestionIndex, "Questions Index:", questions.length );
+ 
   questionElement.innerText = question.question
   question.answers.forEach(answer => {
     var button = document.createElement('button')
@@ -50,6 +59,10 @@ function showQuestion(question) {
 }
 
 function resetState() {
+  if(currentQuestionIndex==shuffledQuestions.length){
+    console.log(currentQuestionIndex==shuffledQuestions.length);
+    endQuiz()
+  }
   clearStatusClass(document.body)
   nextButton.classList.add('hide')
   while (answerButtonsElement.firstChild) {
@@ -59,13 +72,14 @@ function resetState() {
 
 // how the question and answers work and the "Next" button apparence starts here
 function selectAnswer(e) {
+ 
   var selectedButton = e.target
   var correct = selectedButton.dataset.correct
   setStatusClass(document.body, correct)
   Array.from(answerButtonsElement.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
   })
-  if (shuffledQuestions.lenght > currentQuestionIndex + 1){
+  if (shuffledQuestions.length > currentQuestionIndex + 1){
     nextButton.classList.remove('hide')
   } else{
     startButton.innerText = 'Next'
@@ -87,50 +101,36 @@ function clearStatusClass(element) {
   element.classList.remove('correct')
   element.classList.remove('wrong')
 }
-// this is where I need to utilize the restart button
-function restartButton() {
 
+function endQuiz(){
+  questionContainerElement.classList.add('hide')
+  formEl.classList.remove("hide")
 }
+// this is where I need to utilize the restart button
 
-var questions = [
-  {
-    question: 'What is the correct way to declare a variable in JavaScript?',
-    answers: [
-      { text: 'var x = 5', correct: true },
-      { text: 'let x = 5', correct: false },
-      { text: 'const x = 5', correct: false },
-      { text: 'int x = 5', correct: false }
-    ]
-  },
+submitBtn.addEventListener("click", ()=>{
+  const userInitials= inputEl.value
+  console.log(userInitials);
+})
 
-  {
-    question: 'How do you check if two variables are strictly equal in both value and type?',
-    answers: [
-      { text: 'x == y', correct: false },
-      { text: 'x === y', correct: true },
-      { text: 'x = y', correct: false },
-      { text: 'x !== y', correct: false }
-    ]
-  },
+
+//LOGIC FOR SHUFFLING QUESTIONS
+
+// function shuffleQuestions(array){
+//   return array.sort(() => 0.5 - Math.random())
+// }
+
+// function getRandomQuestion(prompt){
+//   if(prompt.length===0){
+//    prompt= shuffleQuestions(questions)
+//   }
+//   const randomQuestion= prompt.shift()
+
+//   return randomQuestion;
+// }
+// for (let i = 0; i < question.length; i++) {
+//   const randomQuestion= getRandomQuestion(shuffleQuestions)
+//   console.log(randomQuestion);
   
-  {
-    question: 'What does the “DOM” stand for in JavaScript?',
-    answers: [
-      { text: 'Document Object Model', correct: true },
-      { text: 'Data Object Model', correct: false },
-      { text: 'Document Oriented Model', correct: false },
-      { text: 'Dynamic Object Manipulation', correct: false }
-    ]
-  },
-
-  {
-    question: 'Which function is used to add an element to the end of an array in JavaScript?',
-    answers: [
-      { text: 'addElement()', correct: false },
-      { text: 'push()', correct: true },
-      { text: 'append()', correct: false },
-      { text: 'insertAtEnd()', correct: false}
-    ]
-  } 
-]
-
+// }
+// shuffleQuestions(questions)

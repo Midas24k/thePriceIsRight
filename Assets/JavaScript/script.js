@@ -67,7 +67,7 @@ function selectAnswer(e) {
   }
   
 }
-
+// changes the color of background based on correct (green) or wrong (red)
 function setStatusClass(element, correct) {
   clearStatusClass(element)
   if (correct) {

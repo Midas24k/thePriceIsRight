@@ -19,6 +19,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: hsl(var(--hue), 100%, 20%);
+    /* background-image: linear-gradient(90deg, #26193C 0%, #253C68 35%, #02638E 100%);; */
 }
 
 body.correct {

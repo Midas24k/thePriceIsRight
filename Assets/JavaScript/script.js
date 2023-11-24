@@ -79,9 +79,9 @@ function setStatusClass(element, correct) {
 
 function clearStatusClass(element) {
   element.classList.remove('correct')
-  element.classList.remove()
+  element.classList.remove('wrong')
 }
-
+// this is where I need to utilize the restart button
 function restartButton() {
 
 }

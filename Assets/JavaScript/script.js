@@ -4,7 +4,13 @@ var restartButton = document.getElementById('restart-btn')
 var questionContainerElement = document.getElementById('question-container')
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
+var timeElement = document.getElementById("time")
+var scoreElement = document.getElementById("score")
+
 let shuffledQuestions, currentQuestionIndex
+let score= 0;
+let timeLeft= 130;
+
 
 // this is for the start button duh
 startButton.addEventListener('click', startGame)

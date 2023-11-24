@@ -46,6 +46,14 @@ body.wrong {
     padding: 10px;
     box-shadow: 0 0 10px 2px;
 }
+.timer {
+    font: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .btn-grid {
     display: grid;

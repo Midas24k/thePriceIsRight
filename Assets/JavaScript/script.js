@@ -9,17 +9,20 @@ var scoreElement = document.getElementById("score")
 const formEl= document.querySelector(".form")
 const inputEl= document.getElementById("input")
 const submitBtn=document.getElementById("submit-btn")
+const quizDuration = 120;
+const minutes = Math.floor(quizDuration/60);
+const seconds = quizDuration%60;
 
 let shuffledQuestions
 let currentQuestionIndex=0
 let score= 0;
-let timeLeft= 130;
 
 
+ 
 // this is for the start button duh
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () =>{
- 
+  
   currentQuestionIndex++
   setNextQuestion()
 })
@@ -106,6 +109,25 @@ function endQuiz(){
   questionContainerElement.classList.add('hide')
   formEl.classList.remove("hide")
 }
+
+const timer = setInterval(() => {
+  quizDuration;
+
+  // Calculate minutes and seconds
+  const minutes = Math.floor(quizDuration / 60);
+  const seconds = quizDuration % 60;
+
+  // Display updated time
+  console.log(`Time remaining: ${minutes} minutes ${seconds} seconds`);
+
+  // Check if the quiz is over
+  if (quizDuration <= 0) {
+    clearInterval(timer);
+    console.log("Quiz time is up!");
+    // Add code to handle the end of the quiz, like submitting answers
+  }
+}, 1000); // Update every second
+
 // this is where I need to utilize the restart button
 
 submitBtn.addEventListener("click", ()=>{

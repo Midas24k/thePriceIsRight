@@ -9,28 +9,50 @@ var scoreElement = document.getElementById("score")
 const formEl= document.querySelector(".form")
 const inputEl= document.getElementById("input")
 const submitBtn=document.getElementById("submit-btn")
-const quizDuration = 120;
-const minutes = Math.floor(quizDuration/60);
-const seconds = quizDuration%60;
+const startingMinutes = 2;
+const intervalid =setInterval(updateCountdown, 1000);
+let time = startingMinutes * 60;
+
+
 
 let shuffledQuestions
-let currentQuestionIndex=0
+let currentQuestionIndex=-1;
 let score= 0;
 
+const countdownEl = document.getElementById('countdown');
+setInterval(updateCountdown, 1000);
+
+function updateCountdown() {
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+
+  countdownEl.innerHTML = `${minutes}: ${seconds}`;
+   
+  if (time === 0) {
+    clearInterval(countdownEl);
+  } else{
+    time--; 
+  }
+
+  
+
+}
 
  
 // this is for the start button duh
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () =>{
-  
-  currentQuestionIndex++
   setNextQuestion()
 })
+
 // this button needs to be added in the mix
 // restartButton.addEventListener('click', restartGame)
 
 
 function startGame() {
+  console.log('Started game!');
   startButton.classList.add('hide')
  
     shuffledQuestions = questions
@@ -41,6 +63,7 @@ function startGame() {
 
 function setNextQuestion() {
   resetState()
+  currentQuestionIndex++;
   showQuestion(shuffledQuestions[currentQuestionIndex])
 
 }
@@ -62,7 +85,7 @@ console.log("current Index:", currentQuestionIndex, "Questions Index:", question
 }
 
 function resetState() {
-  if(currentQuestionIndex==shuffledQuestions.length){
+  if(currentQuestionIndex == shuffledQuestions.length - 1){
     console.log(currentQuestionIndex==shuffledQuestions.length);
     endQuiz()
   }
@@ -83,8 +106,10 @@ function selectAnswer(e) {
     setStatusClass(button, button.dataset.correct)
   })
   if (shuffledQuestions.length > currentQuestionIndex + 1){
+    console.log('Moving to next question!');
     nextButton.classList.remove('hide')
   } else{
+    console.log('Done! Let\'s see the scores!');
     startButton.innerText = 'Next'
     startButton.classList.remove('hide')
   }
@@ -110,23 +135,7 @@ function endQuiz(){
   formEl.classList.remove("hide")
 }
 
-const timer = setInterval(() => {
-  quizDuration;
 
-  // Calculate minutes and seconds
-  const minutes = Math.floor(quizDuration / 60);
-  const seconds = quizDuration % 60;
-
-  // Display updated time
-  console.log(`Time remaining: ${minutes} minutes ${seconds} seconds`);
-
-  // Check if the quiz is over
-  if (quizDuration <= 0) {
-    clearInterval(timer);
-    console.log("Quiz time is up!");
-    // Add code to handle the end of the quiz, like submitting answers
-  }
-}, 1000); // Update every second
 
 // this is where I need to utilize the restart button
 
